@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produktliste</title>
+</head>
+<body>
+  <h1>Produktliste</h1>
+  
+  <table id="product-table" border="1">
+    <thead>
+      <tr>
+        <th>Artikelnummer</th>
+        <th>Bezeichnung</th>
+        <th>Bild</th>
+        <th>Bestellen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Produkte werden hier hinzugefügt -->
+    </tbody>
+  </table>
+
+  <script>
+    function orderProduct(artNr) {
+      alert(`Produkt mit Artikelnummer ${artNr} wurde bestellt.`);
+    }
+
+    function createProductList(products) {
+      const tableBody = document.querySelector('#product-table tbody');
+      
+      // Für jedes Produkt eine Zeile hinzufügen
+      products.forEach(product => {
+        const row = document.createElement('tr');
+        
+        // Artikelnummer
+        const artNrCell = document.createElement('td');
+        artNrCell.textContent = product.artNr;
+        row.appendChild(artNrCell);
+        
+        // Bezeichnung
+        const bezeichnungCell = document.createElement('td');
+        bezeichnungCell.textContent = product.bezeichnung;
+        row.appendChild(bezeichnungCell);
+        
+        // Bild
+        const imageCell = document.createElement('td');
+        const img = document.createElement('img');
+        img.src = product.thumbnail;
+        img.width = 50;
+        imageCell.appendChild(img);
+        row.appendChild(imageCell);
+        
+        // Bestellen-Button
+        const buttonCell = document.createElement('td');
+        const button = document.createElement('button');
+        button.textContent = 'Bestellen';
+        button.onclick = () => orderProduct(product.artNr);
+        buttonCell.appendChild(button);
+        row.appendChild(buttonCell);
+        
+        // Zeile in die Tabelle einfügen
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Beispielprodukte
+    const products = [
+      { artNr: '1234', bezeichnung: 'Produkt 1', thumbnail: 'https://via.placeholder.com/50' },
+      { artNr: '5678', bezeichnung: 'Produkt 2', thumbnail: 'https://via.placeholder.com/50' }
+    ];
+
+    // Produktliste erstellen
+    createProductList(products);
+  </script>
+</body>
+</html>
+
