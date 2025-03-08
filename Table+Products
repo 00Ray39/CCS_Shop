@@ -1,0 +1,20 @@
+function ProductList({ products }) {
+  return (
+    <table>
+      <tr>
+        <th>Artikelnummer</th>
+        <th>Bezeichnung</th>
+        <th>Bild</th>
+        <th>Bestellen</th>
+      </tr>
+      {products.map((product) => (
+        <tr>
+          <td>{product.artNr}</td>
+          <td>{product.bezeichnung}</td>
+          <td><img src={product.thumbnail} width="50"/></td>
+          <td><button onClick={() => orderProduct(product.artNr)}>Bestellen</button></td>
+        </tr>
+      ))}
+    </table>
+  );
+}
